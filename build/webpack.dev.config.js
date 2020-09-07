@@ -9,7 +9,7 @@ const commonWebpackConfig = require('./webpack.common.config')
 module.exports = merge(commonWebpackConfig, {
   mode: process.env.NODE_ENV,
   entry: {
-    home: './src/index.ts'
+    home: './src/index.tsx'
   },
   output: {
     filename: '[name].[hash].bundle.js',

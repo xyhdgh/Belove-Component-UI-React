@@ -4,7 +4,7 @@ const commonWebpackConfig = require('./webpack.common.config')
 
 module.exports = merge(commonWebpackConfig, {
   mode: 'production',
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, '../lib'),
     filename: 'Beloved-UI-component-react.min.js',

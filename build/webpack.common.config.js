@@ -26,11 +26,11 @@ module.exports = {
         use: [
           Dev ? "style-loader" : MiniCssExtractPlugin.loader,
           {
-          loader: "css-loader",
-          options: {
-            importLoaders: 2
-          }
-        }, "postcss-loader", "less-loader"]
+            loader: "css-loader",
+            options: {
+              modules: true
+            }
+          }, "postcss-loader", "less-loader"]
       }
     ]
   }
