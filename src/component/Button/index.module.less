@@ -18,4 +18,28 @@ button {
     border-color: @hover-color;
     color: @hover-color;
   }
+  overflow: hidden;
+}
+
+span {
+  position: absolute;
+  display: inline-block;
+  animation: tipple .5s linear infinite;
+  z-index: 10;
+  background: /*${(type && type.color)}*/red;
+  border-radius: 50%;
+  // transform-style: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+@keyframes tipple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: .5;
+  }
+  100% {
+    width: /*${(type && type.radius) ? type.radius : '50px'}*/ 200px;
+    height: /*${(type && type.radius) ? type.radius : '50px'}*/ 200px;
+    opacity: 0;
+  }
 }
