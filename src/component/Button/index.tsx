@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useEffect } from 'react'
 import useTipple from '../../hooks/useTipple'
 import useSnakeBorder from '../../hooks/useSnakeBorder'
 import './index.module.less'
@@ -26,8 +26,9 @@ interface ButtonProps {
 }
 
 export default ({ children = 'Default', borderColor = '#999', hoverColor = '#0099FF', shape, width = 80, height = 50, padding = '5px 10px', fontSize = 16, onClick, backgroundColor, type }: ButtonProps) => {
-  const { eleRef, createTipple } = useTipple(500, 'span')
-  const { createSnakeBorder } = useSnakeBorder('span')
+  const eleRef = useRef<HTMLButtonElement>(null)
+  const { createTipple } = useTipple(eleRef, 500, 'span')
+  const { createSnakeBorder } = useSnakeBorder('div')
   const colorType = backgroundColor && backgroundColor.startColor && backgroundColor.endColor ? 'linear' : 'normal'
   let backgroundStyle;
   if (colorType === 'linear') {
@@ -43,12 +44,14 @@ export default ({ children = 'Default', borderColor = '#999', hoverColor = '#009
       createTipple(e)
     }
   }, [])
+
   if (type && type.name === 'snakeBorder') {
-    createSnakeBorder()
+    createSnakeBorder(eleRef)
   }
+
   return (
     <button onClick={handleClick} ref={eleRef}>
-      {children && children}
+      {children}
       <style jsx>{`
         button {
           border-color: ${borderColor && borderColor};
